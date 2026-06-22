@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SecuPulse — Rapport de posture sécurité</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background:#f1f5f9; color:#0f172a; line-height:1.5; }
+    .wrap { max-width:1000px; margin:0 auto; padding:32px 20px; }
+    header.top { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:16px; }
+    .logo { font-size:1.6rem; font-weight:800; letter-spacing:-0.5px; }
+    .logo span { color:#2563eb; }
+    .meta { font-size:0.85rem; color:#64748b; text-align:right; }
+    .hero { background:#fff; border-radius:16px; padding:32px; display:flex; align-items:center; gap:40px; box-shadow:0 1px 3px rgba(0,0,0,.08); margin-bottom:24px; flex-wrap:wrap; }
+    .gauge { position:relative; width:170px; height:170px; flex-shrink:0; }
+    .gauge svg { transform:rotate(-90deg); }
+    .gauge-txt { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .gauge-score { font-size:2.6rem; font-weight:800; color:#ea580c; }
+    .gauge-max { font-size:0.8rem; color:#94a3b8; }
+    .hero-info h1 { font-size:1.3rem; margin-bottom:6px; }
+    .hero-status { display:inline-block; padding:6px 16px; border-radius:999px; color:#fff; font-weight:700; font-size:0.9rem; background:#ea580c; margin:8px 0; }
+    .hero-info p { color:#475569; font-size:0.92rem; max-width:480px; }
+    .sev-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:28px; }
+    .sev-card { background:#fff; border-radius:12px; padding:18px 10px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+    .sev-num { font-size:2rem; font-weight:800; }
+    .sev-lbl { font-size:0.72rem; color:#64748b; font-weight:600; letter-spacing:0.5px; }
+    section.cat { background:#fff; border-radius:14px; padding:24px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+    section.cat h2 { font-size:1.1rem; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #f1f5f9; padding-bottom:10px; }
+    .cat-count { font-size:0.78rem; font-weight:500; color:#94a3b8; }
+    .finding { padding:16px; border-radius:10px; background:#f8fafc; margin-bottom:12px; border-left:3px solid #e2e8f0; }
+    .finding-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .badge { color:#fff; font-size:0.68rem; font-weight:700; padding:3px 10px; border-radius:6px; letter-spacing:0.5px; }
+    .finding-title { font-weight:700; font-size:0.98rem; }
+    .finding-detail { font-size:0.88rem; color:#475569; margin-bottom:8px; }
+    .finding-objs { list-style:none; display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+    .finding-objs li { background:#e2e8f0; font-size:0.78rem; padding:3px 10px; border-radius:6px; font-family:monospace; }
+    .finding-reco { font-size:0.85rem; color:#0f172a; background:#eff6ff; padding:8px 12px; border-radius:8px; }
+    footer { text-align:center; color:#94a3b8; font-size:0.8rem; margin-top:28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <header class="top">
+        <div class="logo">Secu<span>Pulse</span></div>
+        <div class="meta">
+            Rapport généré le 22/06/2026 à 17:08<br>
+            Organisation : <strong>Groupe Lemoine</strong> · Mode démonstration
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="gauge">
+            <svg width="170" height="170">
+                <circle cx="85" cy="85" r="70" fill="none" stroke="#e2e8f0" stroke-width="14"/>
+                <circle cx="85" cy="85" r="70" fill="none" stroke="#ea580c" stroke-width="14"
+                    stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="233"/>
+            </svg>
+            <div class="gauge-txt">
+                <div class="gauge-score">47</div>
+                <div class="gauge-max">/ 100</div>
+            </div>
+        </div>
+        <div class="hero-info">
+            <h1>Posture de sécurité du SI</h1>
+            <span class="hero-status">INSUFFISANT</span>
+            <p>Ce rapport synthétise l'état de sécurité du système d'information à partir de
+            9 constats automatisés (Active Directory, réseau, postes, sauvegardes).
+            Chaque exécution recalcule le score et met en évidence les actions prioritaires.</p>
+        </div>
+    </div>
+
+    <div class="sev-grid">
+        <div class="sev-card" style="border-top:4px solid #dc2626">
+            <div class="sev-num" style="color:#dc2626">2</div>
+            <div class="sev-lbl">CRITIQUE</div>
+        </div>
+        <div class="sev-card" style="border-top:4px solid #ea580c">
+            <div class="sev-num" style="color:#ea580c">4</div>
+            <div class="sev-lbl">ELEVE</div>
+        </div>
+        <div class="sev-card" style="border-top:4px solid #ca8a04">
+            <div class="sev-num" style="color:#ca8a04">3</div>
+            <div class="sev-lbl">MOYEN</div>
+        </div>
+        <div class="sev-card" style="border-top:4px solid #0891b2">
+            <div class="sev-num" style="color:#0891b2">0</div>
+            <div class="sev-lbl">FAIBLE</div>
+        </div>
+        <div class="sev-card" style="border-top:4px solid #64748b">
+            <div class="sev-num" style="color:#64748b">0</div>
+            <div class="sev-lbl">INFO</div>
+        </div></div>
+
+    
+        <section class="cat">
+            <h2>Active Directory <span class="cat-count">3 constat(s)</span></h2>
+            
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ea580c">ELEVE</span>
+                    <span class="finding-title">Comptes inactifs > 90 jours non désactivés</span>
+                </div>
+                <p class="finding-detail">Des comptes n'ont pas été utilisés depuis plus de 90 jours mais restent actifs. Surface d'attaque inutile (comptes dormants = cible idéale).</p>
+                <ul class="finding-objs"><li>j.martin</li><li>compta_temp</li><li>stagiaire2024</li><li>old_admin</li><li>test_sql</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Désactiver automatiquement après 90j d'inactivité, supprimer après 180j.</p>
+            </div>
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ea580c">ELEVE</span>
+                    <span class="finding-title">Mots de passe qui n'expirent jamais</span>
+                </div>
+                <p class="finding-detail">Comptes avec l'option 'PasswordNeverExpires'. Un mot de passe statique compromis reste valable indéfiniment.</p>
+                <ul class="finding-objs"><li>svc_backup</li><li>svc_sql</li><li>administrateur</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Activer l'expiration ou migrer vers des comptes de service gérés (gMSA).</p>
+            </div>
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ca8a04">MOYEN</span>
+                    <span class="finding-title">Comptes à privilèges élevés</span>
+                </div>
+                <p class="finding-detail">Nombre de comptes membres de groupes d'administration. À maintenir au strict minimum.</p>
+                <ul class="finding-objs"><li>administrateur</li><li>admin_reseau</li><li>svc_backup</li><li>p.durand</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Appliquer le principe du moindre privilège, séparer comptes admin/usage quotidien.</p>
+            </div>
+        </section>
+        <section class="cat">
+            <h2>Réseau <span class="cat-count">2 constat(s)</span></h2>
+            
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#dc2626">CRITIQUE</span>
+                    <span class="finding-title">Services à risque exposés</span>
+                </div>
+                <p class="finding-detail">Des services sensibles sont accessibles sur le réseau. RDP et SMB sont des vecteurs majeurs de ransomware ; Telnet transmet les identifiants en clair.</p>
+                <ul class="finding-objs"><li>192.168.10.12:3389 (RDP exposé)</li><li>192.168.10.45:23 (Telnet — protocole non chiffré)</li><li>192.168.10.7:445 (SMB)</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Fermer Telnet, restreindre RDP/SMB par VLAN + firewall, activer le NLA sur RDP.</p>
+            </div>
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ca8a04">MOYEN</span>
+                    <span class="finding-title">Équipements sans segmentation VLAN</span>
+                </div>
+                <p class="finding-detail">Postes utilisateurs et serveurs sur le même segment. Un poste compromis peut atteindre les serveurs.</p>
+                <ul class="finding-objs"><li>VLAN unique détecté : 192.168.10.0/24</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Segmenter : VLAN Serveurs / VLAN Postes / VLAN Invités, filtrage inter-VLAN sur pfSense.</p>
+            </div>
+        </section>
+        <section class="cat">
+            <h2>Postes & Serveurs <span class="cat-count">3 constat(s)</span></h2>
+            
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#dc2626">CRITIQUE</span>
+                    <span class="finding-title">Machines sans antivirus actif</span>
+                </div>
+                <p class="finding-detail">Endpoint sans protection antivirus détectée.</p>
+                <ul class="finding-objs"><li>PC-ATELIER-05</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Déployer Microsoft Defender via GPO/Intune sur 100% du parc.</p>
+            </div>
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ea580c">ELEVE</span>
+                    <span class="finding-title">Machines sans mises à jour récentes (>30j)</span>
+                </div>
+                <p class="finding-detail">Machines n'ayant pas reçu de correctifs depuis plus de 30 jours. Vulnérables aux exploits connus.</p>
+                <ul class="finding-objs"><li>PC-COMPTA-03</li><li>PC-RH-01</li><li>SRV-FILE-02</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Mettre en place un cycle de patch management mensuel (WSUS / Intune).</p>
+            </div>
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ca8a04">MOYEN</span>
+                    <span class="finding-title">Postes portables non chiffrés</span>
+                </div>
+                <p class="finding-detail">Portables sans chiffrement disque. Vol = fuite de données directe.</p>
+                <ul class="finding-objs"><li>PC-COMPTA-03</li><li>PC-DIR-01</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Activer BitLocker via GPO, séquestre des clés dans l'AD.</p>
+            </div>
+        </section>
+        <section class="cat">
+            <h2>Sauvegarde <span class="cat-count">1 constat(s)</span></h2>
+            
+            <div class="finding">
+                <div class="finding-head">
+                    <span class="badge" style="background:#ea580c">ELEVE</span>
+                    <span class="finding-title">Pas de copie hors-site (règle 3-2-1 incomplète)</span>
+                </div>
+                <p class="finding-detail">Sauvegardes présentes localement mais aucune copie externalisée détectée. Un ransomware chiffrant le NAS détruirait aussi les sauvegardes.</p>
+                <ul class="finding-objs"><li>Backup local OK</li><li>Copie hors-site MANQUANTE</li><li>Test de restauration : jamais effectué</li></ul>
+                <p class="finding-reco"><strong>Recommandation :</strong> Appliquer 3-2-1 : 3 copies, 2 supports, 1 hors-site (immutable/air-gap).</p>
+            </div>
+        </section>
+
+    <footer>
+        SecuPulse — Prototype d'automatisation de la posture sécurité · Conçu par Omar Benmansour<br>
+        Données simulées à des fins de démonstration. Version réelle branchable sur AD / Nmap / Intune / Veeam.
+    </footer>
+</div>
+</body>
+</html>
